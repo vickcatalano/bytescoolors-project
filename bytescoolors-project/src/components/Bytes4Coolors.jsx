@@ -75,9 +75,12 @@ export default function Bytes4Coolors() {
         display: "flex",
         flexDirection: "column",
         position: "relative",
+        backgroundColor: "#000",
+        color: "#fff",
+        overflow: "hidden",
       }}
     >
-      {/* TOPO COM O TÍTULO */}
+      {/* TÍTULO FIXO NO TOPO */}
       <div
         style={{
           position: "absolute",
@@ -109,6 +112,49 @@ export default function Bytes4Coolors() {
         </h1>
       </div>
 
+      {/* NAVEBAR ANIMADA */}
+      <div
+        style={{
+          width: "100%",
+          height: "40px",
+          marginTop: "100px",
+          overflow: "hidden",
+          position: "relative",
+          background: "rgba(255, 255, 255, 0.05)",
+          backdropFilter: "blur(8px)",
+          borderTop: "1px solid rgba(255,255,255,0.1)",
+          borderBottom: "1px solid rgba(255,255,255,0.1)",
+        }}
+      >
+        <div
+          style={{
+            display: "inline-block",
+            whiteSpace: "nowrap",
+            position: "absolute",
+            animation: "scrollText 15s linear infinite",
+          }}
+        >
+          {/* Repete o texto algumas vezes pra garantir continuidade visual */}
+          {Array.from({ length: 10 }).map((_, i) => (
+            <span
+              key={i}
+              style={{
+                fontSize: "1.2rem",
+                fontWeight: 700,
+                fontFamily: "'Rajdhani', sans-serif",
+                textTransform: "uppercase",
+                letterSpacing: "2px",
+                marginRight: "60px",
+              }}
+            >
+              <span style={{ color: "#894DFF" }}>BYTES</span>
+              <span style={{ color: "#00FFD1" }}>4</span>
+              <span style={{ color: "#894DFF" }}>FUTURE</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* PALETA DE CORES */}
       <div style={{ display: "flex", flex: 1 }}>
         {paleta.map((cor, index) => (
@@ -123,6 +169,7 @@ export default function Bytes4Coolors() {
               justifyContent: "center",
               position: "relative",
               cursor: "pointer",
+              transition: "background-color 0.3s ease-in-out",
             }}
           >
             <p
@@ -205,6 +252,19 @@ export default function Bytes4Coolors() {
       >
         Gerar Nova Paleta
       </button>
+
+      {/* ANIMAÇÃO GLOBAL */}
+      <style jsx>{`
+        @keyframes scrollText {
+          0% {
+            left: 100%;
+          }
+          100% {
+            left: -100%;
+          }
+        }
+      `}</style>
     </div>
   );
 }
+
